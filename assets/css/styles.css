@@ -1,0 +1,9 @@
+/*SET ROBOTO*/
+* {
+  font-family: Roboto;
+}
+
+/*RESETS*/
+.navbar {
+  border-radius: 0;
+}
