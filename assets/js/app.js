@@ -42,16 +42,12 @@ var uiConfig = {
 //This function get called only in the sign in flow
 //TODO refactor this so that new user gets explicitly created only when one doesnt exist
 function createUser(data) {
-  var userData = {};
-  var key = data.uid;
-  userData[key] = {
+  //Write new user to FB
+  DB_ROOT.child('users/' + data.uid).update({
     name: data.displayName,
     email: data.email,
     photoURL: data.photoURL
-  };
-
-  //Write new user to FB
-  DB_ROOT.child('users').update(userData);
+  });
 }
 
 //Init the app
@@ -81,7 +77,10 @@ initApp = function() {
 
       USER_LOGGEDIN = true;
       //Update UI with current user
-      var currentUserData = '<div class="col-xs-12 text-xs-center"><img src="' + user.photoURL + '" title="Current logged in user"></div>';
+      var currentUserData = '';
+      if (user.photoURL) {
+        currentUserData += '<div class="col-xs-12 text-xs-center"><img src="' + user.photoURL + '" title="Current logged in user"></div>';
+      }
       currentUserData += '<p class="col-xs-12">Current logged in user: <strong>' + user.displayName + '</strong></p>';
       currentUserData += '<p class="col-xs-12">Email: <strong>' + user.email + '</strong></p>';
       $('#outputCurrentUser').html(currentUserData);
@@ -89,12 +88,19 @@ initApp = function() {
 
       //TODO
       //Refactor this; for now we test here what access does the current user have
-      DB_ROOT.child('users').on('value', function(snap) {
+      //All users should only have access at their personal nodes
+      DB_ROOT.child('/users/' + uid + '/giftbox').on('value', function(snap) {
+        var constructor = '';
+        //Loop all gifts
         for (var i in snap.val()) {
-          console.log(snap.val()[i]);
-          $('#outputGiftbox').append(snap.val()[i]);
+          //Loop all gift properties
+          constructor += '<div class="col-xs-3"><div class="text-xs-left alert alert-info gift-item">';
+          for (var j in snap.val()[i]) {
+            constructor += j + ': <strong>' + snap.val()[i][j] + '</strong><br>';
+          }
+          constructor += '</div></div>';
         }
-
+        $('#outputGiftbox').html(constructor);
       });
 
 
@@ -103,6 +109,7 @@ initApp = function() {
       document.getElementById('btn-sign-in').textContent = 'Sign in';
 
       USER_LOGGEDIN = false;
+      $('#outputGiftbox').html("");
       $('#outputCurrentUser').html('<div class="col-xs-12">No user is logged in!</div>');
     }
 
