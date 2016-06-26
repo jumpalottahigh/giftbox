@@ -25,19 +25,38 @@ var uiConfig = {
     firebase.auth.EmailAuthProvider.PROVIDER_ID
   ],
   // Terms of service url.
-  'tosUrl': '<your-tos-url>',
+  'tosUrl': 'tos.html',
   'callbacks': {
     'signInSuccess': function(currentUser, credential, redirectUrl) {
+      //Let's write starting user data to firebase here
+      createUser(currentUser);
+
       // Do something.
       // Return type determines whether we continue the redirect automatically
       // or whether we leave that to developer to handle.
-      return true;
+      return false;
     }
   }
 };
 
+//This function get called only in the sign in flow
+//TODO refactor this so that new user gets explicitly created only when one doesnt exist
+function createUser(data) {
+  var userData = {};
+  var key = data.uid;
+  userData[key] = {
+    name: data.displayName,
+    email: data.email,
+    photoURL: data.photoURL
+  };
+
+  //Write new user to FB
+  DB_ROOT.child('users').update(userData);
+}
+
 //Init the app
 var app = firebase.initializeApp(config);
+var DB_ROOT = app.database().ref();
 var auth = app.auth();
 
 // Initialize the FirebaseUI Widget using Firebase.
@@ -57,34 +76,40 @@ initApp = function() {
       var uid = user.uid;
       var providerData = user.providerData;
       user.getToken().then(function(accessToken) {
-        document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
         document.getElementById('btn-sign-in').textContent = 'Sign out';
-        document.getElementById('quickstart-account-details').textContent = JSON.stringify({
-          displayName: displayName,
-          email: email,
-          emailVerified: emailVerified,
-          photoURL: photoURL,
-          uid: uid,
-          accessToken: accessToken,
-          providerData: providerData
-        }, null, '  ');
       });
+
       USER_LOGGEDIN = true;
+      //Update UI with current user
+      var currentUserData = '<div class="col-xs-12 text-xs-center"><img src="' + user.photoURL + '" title="Current logged in user"></div>';
+      currentUserData += '<p class="col-xs-12">Current logged in user: <strong>' + user.displayName + '</strong></p>';
+      currentUserData += '<p class="col-xs-12">Email: <strong>' + user.email + '</strong></p>';
+      $('#outputCurrentUser').html(currentUserData);
+
+
+      //TODO
+      //Refactor this; for now we test here what access does the current user have
+      DB_ROOT.child('users').on('value', function(snap) {
+        for (var i in snap.val()) {
+          console.log(snap.val()[i]);
+          $('#outputGiftbox').append(snap.val()[i]);
+        }
+
+      });
+
+
     } else {
       // User is signed out.
-      document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
       document.getElementById('btn-sign-in').textContent = 'Sign in';
-      document.getElementById('quickstart-account-details').textContent = 'null';
 
       USER_LOGGEDIN = false;
+      $('#outputCurrentUser').html('<div class="col-xs-12">No user is logged in!</div>');
     }
+
   }, function(error) {
     console.log(error);
   });
 };
-
-
-//Log in the user
 
 //Rework this later
 //On load init

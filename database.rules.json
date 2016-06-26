@@ -1,4 +1,11 @@
 {
   ".read": true,
-  ".write": "auth != null"
+  ".write": "auth != null",
+  ".validate": "newData.isString()",
+  "users": {
+    "$uid": {
+      ".read": "auth.uid == $uid",
+      ".write": "auth.uid == $uid"
+    }
+  }
 }

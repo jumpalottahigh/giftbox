@@ -23,9 +23,9 @@
   <link rel="stylesheet" href="assets/css/styles.css">
 
   <!-- Firebase -->
-  <!-- <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script> -->
-  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase-auth.js"></script>
+  <!-- <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase-auth.js"></script> -->
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
   <script src="https://www.gstatic.com/firebasejs/ui/0.4.0/firebase-ui-auth.js"></script>
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/0.4.0/firebase-ui-auth.css" />
 
@@ -52,23 +52,17 @@
   <!-- TOP MENu -->
   <header>
     <nav class="navbar navbar-dark bg-warning p-y-1">
-      <ul class="nav navbar-nav row">
+      <ul class="nav navbar-nav row text-xs-right">
         <li class="nav-item col-xs-4 col-sm-1 logo-order">
           <a class="navbar-brand" href="#">
             <img src="favicon.ico" alt="Logo" width="200%">
           </a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link btn btn-primary" href="index.html">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa fa-code-fork"></i> link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa fa-suitcase"></i> link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa fa-book"></i> link</a>
+          <button id="btn-sign-in" class="btn btn-info">Sign In</button>
         </li>
       </ul>
     </nav>
@@ -78,19 +72,13 @@
   <section class="p-y-3 about bg-gray">
     <div class="container text-xs-center">
       <div class="row">
-        <div class="col-xs-12">
-          <h2 class="text-primary">Personal user content output.</h2>
-          <p id="outputTestnode"></p>
-        </div>
+        <h2 class="col-xs-12 text-primary">Current user:</h2>
       </div>
+      <div id="outputCurrentUser" class="row"></div>
       <div class="row">
-        <h2 class="col-xs-12">Login status output:</h2>
-        <div id="quickstart-sign-in-status" class="col-xs-12"></div>
-        <div class="col-xs-12">
-          <button id="btn-sign-in" class="btn btn-info" data-sign-in-state="signed-out"></button>
-        </div>
-        <div id="quickstart-account-details" class="col-xs-12"></div>
+        <h2 class="col-xs-12 text-primary">Giftbox Items:</h2>
       </div>
+      <div id="outputGiftbox" class="row"></div>
     </div>
   </section>
   <!-- END TEMP SECTION -->
