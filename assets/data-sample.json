@@ -1,0 +1,17 @@
+{
+    "0": {
+        "name": "Monitor",
+        "need": "1/3",
+        "note": "would love to get this <3",
+        "timestamp": "added on time"
+    },
+    "1": {
+        "name": "Keyboard",
+        "need": 0,
+        "note": "might be nice",
+        "timestamp": "time here"
+    },
+    "options": {
+        "allowedUsers": ["John", "Test"]
+    }
+}

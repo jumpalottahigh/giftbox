@@ -1,24 +1,17 @@
-// Initialize Firebase PRODUCTION
-// var config = {
-//   apiKey: "AIzaSyBartoXcvlmH1wu6lLuFXcpGEqiSjIoXng",
-//   authDomain: "giftbox-40985.firebaseapp.com",
-//   databaseURL: "https://giftbox-40985.firebaseio.com",
-//   storageBucket: "giftbox-40985.appspot.com",
-// };
-
-//DEVELOPMENT CONFIG
 var config = {
   apiKey: "AIzaSyDJJAuimDWqUJJCrSAUexG95PwoXSuCahw",
   authDomain: "boiling-heat-4669.firebaseapp.com",
   databaseURL: "https://boiling-heat-4669.firebaseio.com",
   storageBucket: "boiling-heat-4669.appspot.com",
 };
-
 firebase.initializeApp(config);
+
+var converter = new Showdown.converter();
+
 
 var Comment = React.createClass({
   render: function() {
-    var rawMarkup = this.props.children.toString();
+    var rawMarkup = converter.makeHtml(this.props.children.toString());
     return (
       <div className='comment'>
         <h2 className='commentAuthor'>{this.props.author}</h2>
@@ -94,5 +87,5 @@ var CommentBox = React.createClass({
 
 ReactDOM.render(
   <CommentBox />,
-  document.getElementById('giftbox-container')
+  document.getElementById('content')
 );
