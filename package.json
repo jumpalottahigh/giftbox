@@ -1,0 +1,32 @@
+{
+    "name": "giftbox",
+    "version": "1.0.1",
+    "description": "Giftbox - Never get another useless gift",
+    "main": "assets/js/app.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "webpack",
+        "start": "webpack-dev-server"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jumpalottahigh/giftbox.git"
+    },
+    "keywords": [
+        "gift",
+        "box"
+    ],
+    "author": "Georgi Yanev",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/jumpalottahigh/giftbox/issues"
+    },
+    "homepage": "https://github.com/jumpalottahigh/giftbox#readme",
+    "dependencies": {
+        "babel-core": "^6.10.4",
+        "babel-loader": "^6.2.4",
+        "babel-preset-es2015": "^6.9.0",
+        "babel-preset-react": "^6.5.0",
+        "webpack": "^1.13.1"
+    }
+}

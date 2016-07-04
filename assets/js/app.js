@@ -1,3 +1,12 @@
+//ES2016
+// import React from "react";
+// import ReactDOM from "react-dom";
+// import Layout from "./components/Layout";
+//
+// ReactDOM.render(<Layout/>, document.getElementById('app'));
+
+
+
 // Initialize Firebase PRODUCTION
 // var config = {
 //   apiKey: "AIzaSyBartoXcvlmH1wu6lLuFXcpGEqiSjIoXng",
