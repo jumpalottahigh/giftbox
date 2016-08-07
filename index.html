@@ -1,39 +1,22 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Giftbox</title>
-  <link rel="icon" href="favicon.ico">
+
   <!-- ROBOTO FONT -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
 
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
-  <!-- BOOTSTRAP 4 FLEX STYLES -->
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-
-  <!-- PNotify toast popup -->
-  <link rel="stylesheet" href="assets/css/pnotify.custom.min.css">
-
-  <!-- OWN STYLES -->
-  <link rel="stylesheet" href="assets/css/styles.css">
-
-  <!-- React -->
-  <script src="https://fb.me/react-15.0.1.min.js"></script>
-  <script src="https://fb.me/react-dom-15.0.1.min.js"></script>
-
   <!-- Firebase -->
   <!-- <script src="https://www.gstatic.com/firebasejs/3.0.0/firebase.js"></script> -->
   <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
   <script src="https://www.gstatic.com/firebasejs/ui/0.4.0/firebase-ui-auth.js"></script>
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/0.4.0/firebase-ui-auth.css" />
-
-  <!-- ReactFire -->
-  <script src="https://cdn.firebase.com/libs/reactfire/1.0.0/reactfire.min.js"></script>
 
   <!-- GA SCRIPT -->
   <script>
@@ -55,6 +38,18 @@
 </head>
 
 <body>
+  <div id="root"></div>
+  <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` in this folder.
+      To create a production bundle, use `npm run build`.
+    -->
+
   <!-- TOP MENU -->
   <header>
     <nav class="navbar navbar-dark bg-warning p-y-1">
@@ -98,44 +93,20 @@
       <div class="row">
         <div class="col-xs-12">
           <h5>Copyright &copy; 2013-2016 Georgi Yanev &amp; Sofia Lindberg</h4>
-          <h5><i class="fa fa-code" aria-hidden="true"></i> with <i class="fa fa-heart" aria-hidden="true"></i> for little Anton.</h4>
+            <h5><i class="fa fa-code" aria-hidden="true"></i> with <i class="fa fa-heart" aria-hidden="true"></i> for little Anton.</h4>
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
-  <!-- END FOOTER -->
+    </footer>
+    <!-- END FOOTER -->
 
-  <!-- jQuery -->
-  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-
-  <!-- Tether (for pop overs and tooltips) -->
-  <script src="assets/js/tether.min.js"></script>
-
-  <!-- Bootstrap 4 -->
-  <script src="assets/js/bootstrap.min.js"></script>
-
-  <!-- PNotify toasts -->
-  <script src="assets/js/pnotify.custom.min.js"></script>
-
-  <!-- Moment.js -->
-  <script src="assets/js/moment.min.js"></script>
-
-  <!-- Login -->
-  <!-- <script src="assets/js/login.js"></script> -->
-
-  <!-- TRANSPILER -->
-  <!-- throw-in-the-towel -->
-  <script src="https://npmcdn.com/throw-in-the-towel@2"></script>
-  <!-- React App -->
-  <script type="text/babel" src="assets/js/app.js"></script>
-
-  <!-- LOGIN MODAL -->
-  <div id="login-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h5 class="modal-title" id="gridModalLabel">Choose a login provider:</h5>
+    <!-- LOGIN MODAL -->
+    <div id="login-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h5 class="modal-title" id="gridModalLabel">Choose a login provider:</h5>
         </div>
         <div class="modal-body">
           <div class="container-fluid bd-example-row">
@@ -150,7 +121,6 @@
       </div>
     </div>
     </div>
-
 </body>
 
 </html>
