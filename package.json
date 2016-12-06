@@ -1,0 +1,22 @@
+{
+    "name": "giftbox",
+    "version": "1.0.1",
+    "description": "Giftbox - Never get another useless gift",
+    "main": "assets/js/app.js",
+    "scripts": {
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jumpalottahigh/giftbox.git"
+    },
+    "keywords": [
+        "gift",
+        "box"
+    ],
+    "author": "Georgi Yanev",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/jumpalottahigh/giftbox/issues"
+    },
+    "homepage": "https://github.com/jumpalottahigh/giftbox#readme"
+}
