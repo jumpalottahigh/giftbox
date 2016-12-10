@@ -6,7 +6,7 @@
         <p>$ {{gift.currentAmount}} / $ {{gift.totalPrice}}</p>
         <p>{{gift.note}}</p>
         <p><span class="text-muted">Need Rating: </span>{{gift.need}}</p>
-        <p><span class="text-muted">Added on: </span>{{gift.timestamp}}</p>
+        <p><span class="text-muted">Added on: </span><time :datetime=formatDate(gift.timestamp)>{{formatDate(gift.timestamp)}}</time></p>
         <p><span class="text-muted">Funded: </span>{{calculatePercentFunded(gift.currentAmount, gift.totalPrice)}}%</p>
         <progress class="progress" :value="gift.percentFunded" max="100"></progress>
       </div>
@@ -15,6 +15,8 @@
 </template>
 
 <script>
+import moment from 'moment'
+
 export default {
   name: 'giftbox',
   data () {
@@ -28,7 +30,7 @@ export default {
           note: 'New 144hz monitor for better performance.',
           // Need = 1...5 stars?
           need: 4,
-          timestamp: 1481366658,
+          timestamp: 1421336158000,
           // TODO
           // This needs to be reworked away from hardcoded values, computed properties could be the solution
           percentFunded: this.calculatePercentFunded(200, 280)
@@ -41,7 +43,7 @@ export default {
           note: 'New mechanical keyboard.',
           // Need = 1...5 stars?
           need: 5,
-          timestamp: 1481361658,
+          timestamp: 1461361658000,
           percentFunded: this.calculatePercentFunded(20, 195)
         },
         {
@@ -52,7 +54,7 @@ export default {
           note: 'New doggies for Anton.',
           // Need = 1...5 stars?
           need: 4,
-          timestamp: 1481331658,
+          timestamp: 1471331658000,
           percentFunded: this.calculatePercentFunded(0, 1200)
         },
         {
@@ -63,7 +65,7 @@ export default {
           note: 'Need a terrace BBQ for the summer.',
           // Need = 1...5 stars?
           need: 3,
-          timestamp: 1481341658,
+          timestamp: 1479341658000,
           percentFunded: this.calculatePercentFunded(0, 395)
         }
       ]
@@ -73,6 +75,9 @@ export default {
     calculatePercentFunded: function (current, total) {
       // +0.5 for accurate flooring ;)
       return Math.floor((current / total * 100) + 0.5)
+    },
+    formatDate: function (ts) {
+      return moment(ts).format('Do MMM YYYY')
     }
   }
 }
