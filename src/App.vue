@@ -1,20 +1,22 @@
 <template>
   <div id="app">
-    <navi></navi>
-    <img src="./assets/logo.png">
-    <hello></hello>
+    <navigation class="mb-3"></navigation>
+    <giftbox class="mb-1"></giftbox>
+    <test></test>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
-import Navi from './components/Navi'
+import Navigation from './components/Navigation'
+import Giftbox from './components/Giftbox'
+import Test from './components/Test'
 
 export default {
   name: 'app',
   components: {
-    Hello,
-    Navi
+    Navigation,
+    Giftbox,
+    Test
   }
 }
 </script>
