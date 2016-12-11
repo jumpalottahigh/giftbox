@@ -14,8 +14,12 @@
         <progress class="progress" :value="gift.percentFunded" max="100"></progress>
         <div class="col-xs-12">
           <button class="btn btn-success" id="editGift"><i class="fa fa-pencil"></i></button>
-          <button class="btn btn-danger" id="deleteGift" v-on:click="deleteGift(gift)"><i class="fa fa-trash-o"></i></button>
+          <button class="btn btn-danger" id="deleteGift" @click="deleteGift(gift)"><i class="fa fa-trash-o"></i></button>
         </div>
+
+        <!-- <ul>
+          <li v-for="user in users">{{ user.name }}</li>
+        </ul> -->
       </div>
     </div>
   </div>
@@ -23,6 +27,7 @@
 
 <script>
 import moment from 'moment'
+// import {getRef} from '../firebase-connect.js'
 
 export default {
   name: 'giftbox',
@@ -83,18 +88,24 @@ export default {
     }
   },
   methods: {
+    // Takes in current funded and total price and returns % value of fund status
     calculatePercentFunded: function (current, total) {
       // +0.5 for accurate flooring ;)
       return Math.floor((current / total * 100) + 0.5)
     },
+    // Format dates with moment.js
     formatDate: function (ts) {
       return moment(ts).format('Do MMM YYYY')
     },
+    // Delete gift
     deleteGift: function (gift) {
       let index = this.giftbox.indexOf(gift)
       this.giftbox.splice(index, 1)
     }
   }
+  //, firebase: {
+  //   users: db.ref('testusers')
+  // }
 }
 </script>
 

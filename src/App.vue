@@ -2,21 +2,18 @@
   <div id="app">
     <navigation class="mb-3"></navigation>
     <giftbox class="mb-1"></giftbox>
-    <test></test>
   </div>
 </template>
 
 <script>
 import Navigation from './components/Navigation'
 import Giftbox from './components/Giftbox'
-import Test from './components/Test'
 
 export default {
   name: 'app',
   components: {
     Navigation,
-    Giftbox,
-    Test
+    Giftbox
   }
 }
 </script>
