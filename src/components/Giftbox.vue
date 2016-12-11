@@ -16,10 +16,10 @@
           <button class="btn btn-success" id="editGift"><i class="fa fa-pencil"></i></button>
           <button class="btn btn-danger" id="deleteGift" @click="deleteGift(gift)"><i class="fa fa-trash-o"></i></button>
         </div>
-
-        <!-- <ul>
+        <!-- Test element to check firebase bindings -->
+        <ul>
           <li v-for="user in users">{{ user.name }}</li>
-        </ul> -->
+        </ul>
       </div>
     </div>
   </div>
@@ -27,7 +27,12 @@
 
 <script>
 import moment from 'moment'
-// import {getRef} from '../firebase-connect.js'
+import Vue from 'vue'
+import VueFire from 'vuefire'
+import {db} from '../firebase-connect'
+
+Vue.use(VueFire)
+const usersRef = db.ref('testusers')
 
 export default {
   name: 'giftbox',
@@ -102,10 +107,13 @@ export default {
       let index = this.giftbox.indexOf(gift)
       this.giftbox.splice(index, 1)
     }
+  },
+  // Bind firebase ref path
+  firebase: {
+    users: usersRef
+  },
+  created: function () {
   }
-  //, firebase: {
-  //   users: db.ref('testusers')
-  // }
 }
 </script>
 
@@ -121,5 +129,9 @@ export default {
   justify-content: space-between;
   height: 100%;
   background-color: #dfdfdf;
+}
+ul {
+  padding: 0;
+  list-style-type: none;
 }
 </style>
