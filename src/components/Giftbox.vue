@@ -1,14 +1,21 @@
 <template>
   <div class="giftbox">
-    <div v-for="gift in giftbox" class="gift-wrapper col-xs-4 mb-2">
-      <div class="gift card p-1">
+    <div v-for="gift in giftbox" class="gift-wrapper col-xs-12 col-sm-6 col-md-4 col-lg-3 mb-2">
+      <div class="gift text-primary card p-1">
         <h4>{{gift.name}}</h4>
         <p>$ {{gift.currentAmount}} / $ {{gift.totalPrice}}</p>
-        <p>{{gift.note}}</p>
+        <p class="text-muted">{{gift.note}}</p>
         <p><span class="text-muted">Need Rating: </span>{{gift.need}}</p>
-        <p><span class="text-muted">Added on: </span><time :datetime=formatDate(gift.timestamp)>{{formatDate(gift.timestamp)}}</time></p>
+        <p>
+          <span class="text-muted">Added on: </span>
+          <time :datetime=formatDate(gift.timestamp)>{{formatDate(gift.timestamp)}}</time>
+        </p>
         <p><span class="text-muted">Funded: </span>{{calculatePercentFunded(gift.currentAmount, gift.totalPrice)}}%</p>
         <progress class="progress" :value="gift.percentFunded" max="100"></progress>
+        <div class="col-xs-12">
+          <button class="btn btn-success" id="editGift"><i class="fa fa-pencil"></i></button>
+          <button class="btn btn-danger" id="deleteGift" v-on:click="deleteGift(gift)"><i class="fa fa-trash-o"></i></button>
+        </div>
       </div>
     </div>
   </div>
@@ -23,6 +30,7 @@ export default {
     return {
       giftbox: [
         {
+          id: 1,
           name: 'Monitor',
           // Currency = $
           currentAmount: 200,
@@ -36,6 +44,7 @@ export default {
           percentFunded: this.calculatePercentFunded(200, 280)
         },
         {
+          id: 2,
           name: 'Keyboard',
           // Currency = $
           currentAmount: 20,
@@ -47,6 +56,7 @@ export default {
           percentFunded: this.calculatePercentFunded(20, 195)
         },
         {
+          id: 3,
           name: 'Doggie',
           // Currency = $
           currentAmount: 0,
@@ -58,6 +68,7 @@ export default {
           percentFunded: this.calculatePercentFunded(0, 1200)
         },
         {
+          id: 4,
           name: 'BBQ',
           // Currency = $
           currentAmount: 0,
@@ -78,6 +89,10 @@ export default {
     },
     formatDate: function (ts) {
       return moment(ts).format('Do MMM YYYY')
+    },
+    deleteGift: function (gift) {
+      let index = this.giftbox.indexOf(gift)
+      this.giftbox.splice(index, 1)
     }
   }
 }
@@ -95,6 +110,5 @@ export default {
   justify-content: space-between;
   height: 100%;
   background-color: #dfdfdf;
-  color: #4286f4;
 }
 </style>
