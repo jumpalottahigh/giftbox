@@ -6,9 +6,9 @@
       </div>
     </header>
     <!-- Start Giftbox -->
-    <main>
-      <div v-for="gift in giftbox" class="col mb-2">
-        <div class="gift text-primary card p-1">
+    <div id="main">
+      <div v-for="gift in giftbox" class="col mb-3">
+        <div class="gift text-primary card p-3">
           <h4>{{gift.name}}</h4>
           <p>$ {{gift.currentAmount}} / $ {{gift.totalPrice}}</p>
           <p class="text-muted">{{gift.note}}</p>
@@ -18,7 +18,7 @@
             <time :datetime="formatDate(gift.timestamp)">{{formatDate(gift.timestamp)}}</time>
           </p>
           <p><span class="text-muted">Funded: </span>{{calculatePercentFunded(gift.currentAmount, gift.totalPrice)}}%</p>
-          <progress class="progress-bar" :value="calculatePercentFunded(gift.currentAmount, gift.totalPrice)" max="100"></progress>
+          <progress class="progress-bar mb-3" :value="calculatePercentFunded(gift.currentAmount, gift.totalPrice)" max="100"></progress>
           <div class="col-xs-12">
             <a class="btn btn-info" id="giftLink" v-bind:href="gift.url"><i class="fa fa-external-link"></i></a>
             <!-- <button class="btn btn-success" id="editGift"><i class="fa fa-pencil"></i></button> -->
@@ -26,7 +26,7 @@
           </div>
         </div>
       </div>
-    </main>
+    </div>
     <!-- End Giftbox -->
 
     <!-- Start add new gift -->

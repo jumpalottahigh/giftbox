@@ -3,14 +3,14 @@
         ".read": false,
         ".write": false,
         "users": {
+            ".read": true,
+            ".write": true
+        },
+        "testusers": {
             "$uid": {
                 ".read": "auth.uid == $uid",
                 ".write": "auth.uid == $uid"
             }
-        },
-        "testusers": {
-          ".read": true,
-          ".write": true
         }
     }
 }
