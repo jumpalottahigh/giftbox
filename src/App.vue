@@ -57,10 +57,6 @@
             <input type="text" id="giftPicture" class="form-control" v-model="newGift.picture">
           </div>
           <div class="form-group">
-            <label for="giftTimestamp">Timestamp:</label>
-            <input type="text" id="giftTimestamp" class="form-control" v-model="newGift.timestamp">
-          </div>
-          <div class="form-group">
             <label for="giftTotalPrice">Total price:</label>
             <input type="text" id="giftTotalPrice" class="form-control" v-model="newGift.totalPrice">
           </div>
@@ -117,7 +113,6 @@ export default {
   data () {
     return {
       newGift: {
-        // TODO: Add all needed fields here
         currentAmount: '',
         name: '',
         need: '',
@@ -131,6 +126,8 @@ export default {
   },
   methods: {
     addGift: function () {
+      // Add current time to new gift
+      this.newGift.timestamp = Date.now()
       giftboxRef.push(this.newGift)
       this.newGift.currentAmount = ''
       this.newGift.name = ''
