@@ -1,8 +1,10 @@
 <template lang="html">
   <div id="app">
     <header>
-      <div class="page-header">
-        <h1>Giftbox</h1>
+      <div class="container">
+        <div class="row">
+          <h1 class="col text-center">Giftbox</h1>
+        </div>
       </div>
     </header>
     <!-- Start Giftbox -->
@@ -18,7 +20,7 @@
             <time :datetime="formatDate(gift.timestamp)">{{formatDate(gift.timestamp)}}</time>
           </p>
           <p><span class="text-muted">Funded: </span>{{calculatePercentFunded(gift.currentAmount, gift.totalPrice)}}%</p>
-          <progress class="progress-bar mb-3" :value="calculatePercentFunded(gift.currentAmount, gift.totalPrice)" max="100"></progress>
+          <progress class="progress progress-info mb-3" :value="calculatePercentFunded(gift.currentAmount, gift.totalPrice)" max="100"></progress>
           <div class="col-xs-12">
             <a class="btn btn-info" id="giftLink" v-bind:href="gift.url"><i class="fa fa-external-link"></i></a>
             <!-- <button class="btn btn-success" id="editGift"><i class="fa fa-pencil"></i></button> -->
@@ -30,42 +32,42 @@
     <!-- End Giftbox -->
 
     <!-- Start add new gift -->
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3>Add new gift</h3>
-      </div>
-      <div class="panel-body">
-        <form id="form" class="form-inline" v-on:submit.prevent="addGift">
-          <div class="form-group">
-            <label for="giftName">Name:</label>
-            <input type="text" id="giftName" class="form-control" v-model="newGift.name">
-          </div>
-          <div class="form-group">
-            <label for="giftNote">Note:</label>
-            <input type="text" id="giftNote" class="form-control" v-model="newGift.note">
-          </div>
-          <div class="form-group">
-            <label for="giftNeed">Need:</label>
-            <input type="text" id="giftNeed" class="form-control" v-model="newGift.need">
-          </div>
-          <div class="form-group">
-            <label for="giftCurrentAmount">Current amount:</label>
-            <input type="text" id="giftCurrentAmount" class="form-control" v-model="newGift.currentAmount">
-          </div>
-          <div class="form-group">
-            <label for="giftPicture">Picture:</label>
-            <input type="text" id="giftPicture" class="form-control" v-model="newGift.picture">
-          </div>
-          <div class="form-group">
-            <label for="giftTotalPrice">Total price:</label>
-            <input type="text" id="giftTotalPrice" class="form-control" v-model="newGift.totalPrice">
-          </div>
-          <div class="form-group">
-            <label for="giftUrl">URL:</label>
-            <input type="text" id="giftUrl" class="form-control" v-model="newGift.url">
-          </div>
-          <input type="submit" class="btn btn-primary" value="Add Gift">
-        </form>
+    <div class="col">
+      <div class="card p-3">
+        <h3>Add a new gift</h3>
+        <div class="">
+          <form id="form" class="" v-on:submit.prevent="addGift">
+            <div class="form-group">
+              <label for="giftName">Name:</label>
+              <input type="text" id="giftName" class="form-control" v-model="newGift.name" placeholder="Vacuum cleaner...">
+            </div>
+            <div class="form-group">
+              <label for="giftNote">Note:</label>
+              <input type="text" id="giftNote" class="form-control" v-model="newGift.note" placeholder="I need this for my science project...">
+            </div>
+            <div class="form-group">
+              <label for="giftNeed">Need(1-3):</label>
+              <input type="text" id="giftNeed" class="form-control" v-model="newGift.need" placeholder="2/3">
+            </div>
+            <div class="form-group">
+              <label for="giftCurrentAmount">Current amount:</label>
+              <input type="text" id="giftCurrentAmount" class="form-control" v-model="newGift.currentAmount" placeholder="$ ">
+            </div>
+            <div class="form-group">
+              <label for="giftPicture">Picture:</label>
+              <input type="text" id="giftPicture" class="form-control" v-model="newGift.picture" placeholder="https://">
+            </div>
+            <div class="form-group">
+              <label for="giftTotalPrice">Total price:</label>
+              <input type="text" id="giftTotalPrice" class="form-control" v-model="newGift.totalPrice" placeholder="$ ">
+            </div>
+            <div class="form-group">
+              <label for="giftUrl">URL:</label>
+              <input type="text" id="giftUrl" class="form-control" v-model="newGift.url" placeholder="https://">
+            </div>
+            <input type="submit" class="btn btn-primary" value="Add Gift">
+          </form>
+        </div>
       </div>
     </div>
     <!-- End add new gift -->
