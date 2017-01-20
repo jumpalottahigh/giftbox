@@ -1,83 +1,109 @@
 <template lang="html">
   <div id="app">
-    <header>
-      <div class="container">
-        <div class="row">
-          <h1 class="col text-center">Giftbox</h1>
-        </div>
-      </div>
-    </header>
-    <!-- Start Giftbox -->
-    <div id="main">
-      <div v-for="gift in giftbox" class="col mb-3">
-        <div class="gift text-primary card p-3">
-          <h4>{{gift.name}}</h4>
-          <p>$ {{gift.currentAmount}} / $ {{gift.totalPrice}}</p>
-          <p class="text-muted">{{gift.note}}</p>
-          <p><span class="text-muted">Need Rating: </span>{{gift.need}}</p>
-          <p>
-            <span class="text-muted">Added on: </span>
-            <time :datetime="formatDate(gift.timestamp)">{{formatDate(gift.timestamp)}}</time>
-          </p>
-          <p><span class="text-muted">Funded: </span>{{calculatePercentFunded(gift.currentAmount, gift.totalPrice)}}%</p>
-          <progress class="progress progress-info mb-3" :value="calculatePercentFunded(gift.currentAmount, gift.totalPrice)" max="100"></progress>
-          <div class="col-xs-12">
-            <a class="btn btn-info" id="giftLink" v-bind:href="gift.url"><i class="fa fa-external-link"></i></a>
-            <!-- <button class="btn btn-success" id="editGift"><i class="fa fa-pencil"></i></button> -->
-            <button class="btn btn-danger" id="removeGift" @click="removeGift(gift)"><i class="fa fa-trash-o"></i></button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End Giftbox -->
+    <!-- Menu tabs -->
+    <md-tabs md-fixed>
 
-    <!-- Start add new gift -->
-    <div class="col">
-      <div class="card p-3">
-        <h3>Add a new gift</h3>
-        <div class="">
-          <form id="form" class="" v-on:submit.prevent="addGift">
-            <div class="form-group">
-              <label for="giftName">Name:</label>
-              <input type="text" id="giftName" class="form-control" v-model="newGift.name" placeholder="Vacuum cleaner...">
+      <!-- Start giftbox tab -->
+      <md-tab md-label="Giftbox">
+        <!-- Repeatable gift card -->
+        <md-card v-for="gift in giftbox">
+          <!-- gift header -->
+          <md-card-header>
+            <h2 class="md-title">
+              {{gift.name}}
+            </h2>
+            <div class="md-subhead">
+              $ {{gift.currentAmount}} / $ {{gift.totalPrice}}
             </div>
-            <div class="form-group">
-              <label for="giftNote">Note:</label>
-              <input type="text" id="giftNote" class="form-control" v-model="newGift.note" placeholder="I need this for my science project...">
-            </div>
-            <div class="form-group">
-              <label for="giftNeed">Need(1-3):</label>
-              <input type="text" id="giftNeed" class="form-control" v-model="newGift.need" placeholder="2/3">
-            </div>
-            <div class="form-group">
-              <label for="giftCurrentAmount">Current amount:</label>
-              <input type="text" id="giftCurrentAmount" class="form-control" v-model="newGift.currentAmount" placeholder="$ ">
-            </div>
-            <div class="form-group">
-              <label for="giftPicture">Picture:</label>
-              <input type="text" id="giftPicture" class="form-control" v-model="newGift.picture" placeholder="https://">
-            </div>
-            <div class="form-group">
-              <label for="giftTotalPrice">Total price:</label>
-              <input type="text" id="giftTotalPrice" class="form-control" v-model="newGift.totalPrice" placeholder="$ ">
-            </div>
-            <div class="form-group">
-              <label for="giftUrl">URL:</label>
-              <input type="text" id="giftUrl" class="form-control" v-model="newGift.url" placeholder="https://">
-            </div>
-            <input type="submit" class="btn btn-primary" value="Add Gift">
-          </form>
-        </div>
-      </div>
-    </div>
-    <!-- End add new gift -->
+          </md-card-header>
+          <!-- gift content -->
+          <md-card-content>
+            <div>{{gift.note}}</div>
+            <div>Need Rating: {{gift.need}}</div>
+            <div>Added on: <time :datetime="formatDate(gift.timestamp)">{{formatDate(gift.timestamp)}}</time></div>
+            <div>Funded: {{calculatePercentFunded(gift.currentAmount, gift.totalPrice)}}%</div>
+            <md-progress :md-progress="calculatePercentFunded(gift.currentAmount, gift.totalPrice)"></md-progress>
+          </md-card-content>
+          <!-- gift actions -->
+          <md-card-actions>
+            <md-button class="md-raised md-primary">Action</md-button>
+            <md-button class="md-raised md-warn" @click="removeGift(gift)">Remove</md-button>
+            <!-- <md-button class="md-raised md-accent">Action</md-button> -->
+            <!-- <md-button class="md-raised">Action</md-button> -->
+          </md-card-actions>
+          <!-- End Giftbox -->
+        </md-card>
 
+      </md-tab>
+      <!-- End giftbox tab -->
+
+      <!-- Start add gift tab -->
+      <md-tab md-label="Add gift">
+        <md-card>
+          <!-- <md-card-header>
+            <h2 class="md-subheading">Add a new gift:</h2>
+          </md-card-header> -->
+
+          <md-card-content>
+            <md-input-container>
+              <md-icon>wallet_giftcard</md-icon>
+              <label>Name:</label>
+              <md-input type="text" v-model="newGift.name"></md-input>
+            </md-input-container>
+
+            <md-input-container>
+              <md-icon>speaker_notes</md-icon>
+              <label>Note:</label>
+              <md-input type="text" v-model="newGift.note"></md-input>
+            </md-input-container>
+
+            <md-input-container>
+              <md-icon>star_half</md-icon>
+              <label>Need (1/3):</label>
+              <md-input type="text" v-model="newGift.need"></md-input>
+            </md-input-container>
+
+            <md-input-container>
+              <md-icon>image</md-icon>
+              <label>Picture:</label>
+              <md-input type="text" v-model="newGift.picture"></md-input>
+            </md-input-container>
+
+            <md-input-container>
+              <md-icon>link</md-icon>
+              <label>URL:</label>
+              <md-input type="text" v-model="newGift.url"></md-input>
+            </md-input-container>
+
+            <md-input-container>
+              <md-icon>attach_money</md-icon>
+              <label>Current amount:</label>
+              <md-input type="text" v-model="newGift.currentAmount"></md-input>
+            </md-input-container>
+
+            <md-input-container>
+              <md-icon>attach_money</md-icon>
+              <label>Total price:</label>
+              <md-input type="text" v-model="newGift.totalPrice"></md-input>
+            </md-input-container>
+
+          </md-card-content>
+          <md-card-actions>
+            <md-button class="md-raised md-primary" @click="addGift()">Add</md-button>
+          </md-card-actions>
+        </md-card>
+        <!-- End add gift tab -->
+      </md-tab>
+    </md-tabs>
+
+    <!-- TODO: IMPROVE THIS TAB -->
+    <!-- Footer -->
     <footer class="py-3">
       <div class="container text-center">
         <div class="row">
           <div class="col">
-            <h5>Copyright &copy; 2013-2017 Georgi Yanev &amp; Sofia Lindberg</h5>
-            <h5><i class="fa fa-code" aria-hidden="true"></i> with <i class="fa fa-heart" aria-hidden="true"></i> for little Anton.</h5>
+            <div>Copyright &copy; 2013-2017 Georgi Yanev &amp; Sofia Lindberg</div>
+            <div><i class="fa fa-code" aria-hidden="true"></i> with <i class="fa fa-heart" aria-hidden="true"></i> for little Anton.</div>
           </div>
         </div>
       </div>
@@ -158,23 +184,12 @@ export default {
 </script>
 
 <style lang="css" scoped>
-/*General*/
-#app {
-  font-family: 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.md-card {
+  margin-bottom: 1.5rem;
   text-align: center;
-  color: #2c3e50;
 }
 
-/*Main - Giftbox*/
-.gift {
-  background-color: #dfdfdf;
-}
-
-/*Footer*/
 footer {
-  color: burlywood;
-  background-color: firebrick;
+  text-align: center;
 }
 </style>
