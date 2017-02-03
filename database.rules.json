@@ -1,16 +1,12 @@
 {
-    "rules": {
-        ".read": false,
-        ".write": false,
-        "users": {
-            ".read": true,
-            ".write": true
-        },
-        "testusers": {
-            "$uid": {
-                ".read": "auth.uid == $uid",
-                ".write": "auth.uid == $uid"
-            }
-        }
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null",
+    "users": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid"
+      }
     }
+  }
 }
