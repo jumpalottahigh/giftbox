@@ -2,7 +2,9 @@
 
 *Never get another useless gift again.*
 
-> A Vue.js project
+> Built with [Vue.js](https://vuejs.org/), [VueMaterial](http://vuematerial.io/#/) and [Firebase](https://firebase.google.com/).
+
+![Giftbox](giftbox-views.png)
 
 ## Build Setup
 
